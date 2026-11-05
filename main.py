@@ -170,11 +170,25 @@ def tela_relatorio(estoque):
     print("\n--- VALOR EM ESTOQUE POR CATEGORIA ---")
     estoque.relatorio_valor_total()
 
-
-
+def criar_dados_exemplo(estoque):
+    """Cria um fornecedor e alguns produtos para o sistema já abrir com dados."""
+    fornecedor = Fornecedor("TechDistrib", "contato@techdistrib.com", 5)
+    estoque.cadastrar_fornecedor(fornecedor)
+ 
+    ssd = Hardware("H001", "SSD 480GB", "Armazenamento", 229.90, fornecedor, 12)
+    placa = Hardware("H002", "Placa de vídeo RTX 4060", "Placas de vídeo", 2399.00, fornecedor, 12)
+    mouse = Periferico("P001", "Mouse gamer", "Periféricos", 129.90, fornecedor, 12, "USB")
+    validade = (date.today() + timedelta(days=12)).strftime("%d/%m/%Y")
+    windows = Software("S001", "Windows 11 Pro", "Licenças", 899.00, fornecedor, "Anual", validade)
+ 
+    for produto, qtd in [(ssd, 12), (placa, 2), (mouse, 8), (windows, 4)]:
+        estoque.cadastrar_produto(produto)
+        estoque.registrar_entrada(produto.codigo, qtd)
+        
 
 def main():
     estoque = Estoque()
+    criar_dados_exemplo(estoque)
 
     acoes = {
         "1": tela_cadastrar_produto,
