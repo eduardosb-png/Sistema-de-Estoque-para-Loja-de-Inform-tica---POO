@@ -74,7 +74,7 @@ class Produto:
                 f"estoque insuficiente. Disponível: {self.__quantidade} unidade(s).")
         self.__quantidade -= qtd
 
-    # --- métodos que as subclasses sobrescrevem (polimorfismo) ---
+    # --- métodos que as subclasses sobrescrevem -polimorfismo- ---
     def descricao(self):
         return (f"[{self.codigo}] {self.nome} | {self.categoria} | "
                 f"R$ {formatar_moeda(self.__preco)}")
@@ -253,9 +253,7 @@ class Estoque:
         return total
 
 
-# ---------------------------------------------------------------------------
 # Interface em terminal (menu)
-# ---------------------------------------------------------------------------
 
 def ler_texto(prompt):
     texto = input(prompt).strip()
@@ -446,7 +444,7 @@ def main():
             mostrar_menu()
             opcao = input("Escolha uma opção: ").strip()
             if opcao == "0":
-                print("\nEncerrando o sistema. Até logo!")
+                print("\nEncerrando o sistema.")
                 break
             acao = acoes.get(opcao)
             if acao is None:
